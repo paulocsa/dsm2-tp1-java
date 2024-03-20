@@ -20,7 +20,7 @@ public class Passagem {
     private int numPoltrona;
 
     
-    public Passagem() {
+    public () {
         this("","","","","","",0);
     }
 
@@ -97,7 +97,7 @@ public class Passagem {
         setRG(JOptionPane.showInputDialog("Digite o RG do passageiro:"));
     }
     
-    public void cdastrarDadosPassagem(){
+    public void cadastrarDadosPassagem(){
         setLocalViagem(JOptionPane.showInputDialog("Digite a data da viagem:"));
         setData(JOptionPane.showInputDialog("Digite a data da viagem:"));
         setHorario(JOptionPane.showInputDialog("Digite o horario da viagem:"));
