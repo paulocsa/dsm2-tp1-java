@@ -1,15 +1,11 @@
-import javax.swing.JOptionPane;
-
 public class Principal {
 
     public static void main(String[] args) {
-        String input = JOptionPane.showInputDialog("Digite um número para calcular o dobro:");
-        double numero = Double.parseDouble(input);
+        // Criando um objeto Dobro
+        Dobro dob = new Dobro();
         
-        Dobro d = new Dobro();
-        d.setNumero(numero);
-        d.calcularDobro();
+        dob.processarNumero();
         
-        JOptionPane.showMessageDialog(null, "O dobro de " + d.getNumero() + " é: " + d.getCalculo());
+        dob.mostrarCalculo();
     }
 }

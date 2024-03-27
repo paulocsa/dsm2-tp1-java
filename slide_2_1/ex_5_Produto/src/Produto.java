@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 public class Produto {
     private String nome;
     private int qtde;
@@ -7,6 +10,7 @@ public class Produto {
     public Produto() {
         this("", 0, 0, 0);
     }
+     
 
     public Produto(String nome, int qtde, double valor, double total) {
         this.nome = nome;
@@ -15,9 +19,7 @@ public class Produto {
         this.total = total;
     }
 
-    public void calcularTotal() {
-        total = qtde * valor;
-    }
+    
 
     // Getters e Setters
     public String getNome() {
@@ -50,5 +52,25 @@ public class Produto {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+    
+   
+    
+    
+    public void solicitarInformacoes() {
+        
+        setNome(JOptionPane.showInputDialog("Digite o nome do produto:"));
+        setValor(Double.parseDouble(JOptionPane.showInputDialog("Digite o valor unitário:")));
+        setQtde(Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade:")));
+        calcularTotal();
+        
+    }
+    public void calcularTotal() {
+        total = qtde * valor;
+    }
+
+    public void exibirInformacoes() {
+        JOptionPane.showMessageDialog(null, "Nome do produto: " + nome + "\nQuantidade: " + qtde +
+                "\nValor Unitário: R$" + valor + "\nTotal: R$" + total);
     }
 }
