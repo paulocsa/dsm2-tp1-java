@@ -74,14 +74,5 @@ public class MediaMatematica {
     public void mostrarMedia(){
         JOptionPane.showMessageDialog(null, "Media entre o numero " + n1 + " e " + n2 +"\n" +
         "Média: "+ media);
-    }
-
-    
-    
-
-    
-
-    
-    
-    
+    }  
 }

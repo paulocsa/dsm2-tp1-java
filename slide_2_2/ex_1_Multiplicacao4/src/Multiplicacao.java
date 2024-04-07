@@ -1,19 +1,13 @@
 
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author fatec-dsm2
- */
+
 public class Multiplicacao {
     private int valor;
     private int resultado;
 
+    
+    
     public Multiplicacao() {
         this(0, 0);
     }
@@ -38,7 +32,7 @@ public class Multiplicacao {
     public void setResultado(int resultado) {
         this.resultado = resultado;
     }
-    
+
     
     public void processarMultiplicacao() {
         valor = Integer.parseInt(JOptionPane.showInputDialog("Digite o valor do número que deseja multiplicar por 4:"));  
@@ -50,6 +44,11 @@ public class Multiplicacao {
    
     public void mostrarMultiplicacao() {
         JOptionPane.showMessageDialog(null, "O resultado da multiplicação por 4 é: " + resultado);
-    } 
+    }
+    
+    
+    
+    
+    
     
 }
