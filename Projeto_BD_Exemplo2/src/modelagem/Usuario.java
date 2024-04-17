@@ -3,6 +3,7 @@ package modelagem;
 
 import controle.conexao;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 
@@ -39,7 +40,7 @@ public class Usuario {
     }
     
     
-        public void cadastrar(){
+        public void cadastrar() throws SQLException{
         String sql;
         sql= "insert into Usuario(nome,email) values"+
                 "(" + getNome() + " , '" + getEmail();
@@ -48,12 +49,12 @@ public class Usuario {
         JOptionPane.showMessageDialog(null, "Registrado c sucesso");
     }
     
-       public ResultSet consultar(){
+       public ResultSet consultar() throws SQLException{
         ResultSet tabela;
         tabela = null;
         
-        String sql= "Select * from ___________";
-        tabela = concliente.RetornarResultset(sql);
+        String sql= "Select * from usuario";
+        tabela = con.RetornarResultset(sql);
      return tabela;   
     }
 }
