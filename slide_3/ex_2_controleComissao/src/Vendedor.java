@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 public class Vendedor {
     private String nome;
     private double salarioBase;
@@ -47,16 +49,21 @@ public class Vendedor {
         this.novoSalario = novoSalario;
     }
 
-    
-    public void entrarNome(String nome) {
+    // Método para solicitar os dados do vendedor usando JOptionPane
+    public void solicitarDados() {
+        String nome = JOptionPane.showInputDialog("Digite o nome do vendedor:");
         setNome(nome);
+
+        double salarioBase = Double.parseDouble(JOptionPane.showInputDialog("Digite o salário base do vendedor:"));
+        setSalarioBase(salarioBase);
+
+        double valorVendido = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor vendido pelo vendedor:"));
+        setValorVendido(valorVendido);
     }
 
-    public void entrarSalarioBase(double salarioBase) {
-        setSalarioBase(salarioBase);
-    }
     
+
     public double calculoComissao() {
-        return ((getValorVendido() * 10) / 100) + getSalarioBase(); // Calcula e retorna o novo salário
+        return ((getValorVendido() * 10) / 100) + getSalarioBase();
     }
 }
