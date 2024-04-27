@@ -1,6 +1,4 @@
-
 import javax.swing.JOptionPane;
-
 
 public class CustoPiso {
     private double comprimentoComodo;
@@ -9,9 +7,7 @@ public class CustoPiso {
     private double custoTotalComodo;
 
     public CustoPiso() {
-        this(0.0,0.0,0.0,0.0);
-         
-        
+        this(0.0, 0.0, 0.0, 0.0);
     }
 
     public CustoPiso(double comprimentoComodo, double larguraComodo, double precoPorArea, double custoTotalComodo) {
@@ -53,26 +49,25 @@ public class CustoPiso {
         this.custoTotalComodo = custoTotalComodo;
     }
     
-    
-    public void inserirValores(){
-       double comprimentoComodo =  Double.parseDouble(JOptionPane.showInputDialog(null,"Digite o valor do comprimento"));
-       setComprimentoComodo(comprimentoComodo);
-       
-       double larguraComodo =  Double.parseDouble(JOptionPane.showInputDialog(null,"Digite o valor da largura do comodo"));
-       setLarguraComodo(larguraComodo);
-       
-       double precoPorArea = Double.parseDouble(JOptionPane.showInputDialog(null,"Preço por área(m2)"));
-       setPrecoPorArea(precoPorArea);
+    public void inserirValores() {
+        double comprimento = Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o comprimento do cômodo:"));
+        setComprimentoComodo(comprimento);
+
+        double largura = Double.parseDouble(JOptionPane.showInputDialog(null, "Digite a largura do cômodo:"));
+        setLarguraComodo(largura);
+
+        double preco = Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o preço por área do piso:"));
+        setPrecoPorArea(preco);
     }
-    
-    public void calcularPrecoArea(){
+
+    public void calcularPrecoArea() {
         setCustoTotalComodo(getComprimentoComodo() * getLarguraComodo() * getPrecoPorArea());
     }
-    
-    public void mostrarValores(){
-        
+
+    public void mostrarValores() {
+        JOptionPane.showMessageDialog(null, "Comprimento do cômodo: " + getComprimentoComodo() +
+                "\nLargura do cômodo: " + getLarguraComodo() +
+                "\nPreço por área do piso: " + getPrecoPorArea() +
+                "\nCusto total do cômodo: " + getCustoTotalComodo());
     }
-    
-    
-    
 }
