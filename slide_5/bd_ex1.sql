@@ -10,4 +10,3 @@ create table usuarios(
 
 select * from usuarios;
  
- 
