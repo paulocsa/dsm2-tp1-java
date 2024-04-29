@@ -11,7 +11,7 @@ public class Conexao {
        
     final private String driver = "com.mysql.jdbc.Driver";
    
-    final private String url= "jdbc:mysql://127.0.0.1/bancoCrudVenda";
+    final private String url= "jdbc:mysql://127.0.0.1/CrudVenda";
     
     final private String usuario="root";
     final private String senha="";

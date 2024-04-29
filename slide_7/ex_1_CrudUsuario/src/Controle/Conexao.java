@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class Conexao {
     final private String driver = "com.mysql.jdbc.Driver";
    
-    final private String url= "jdbc:mysql://127.0.0.1/crudUsuario";
+    final private String url= "jdbc:mysql://127.0.0.1/crudUsuarios";
     
     final private String usuario="root";
     final private String senha="";

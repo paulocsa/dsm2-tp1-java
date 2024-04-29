@@ -48,7 +48,7 @@ public class Venda {
     public void cadastrarVenda(){
         String sql;
         sql = "insert into vendas(codigo, nomeVendedor, nomeProduto) values" + 
-      "(" + getCodigo() + ",'" + getNomeVendedor() + "' , '" + getNomeProduto() + "')";
+      "('" + getCodigo() + "','" + getNomeVendedor() + "' , '" + getNomeProduto() + "')";
         venda.executeSQL(sql);
         JOptionPane.showMessageDialog(null, "Cadastrado com sucesso ! ");
     }

@@ -57,8 +57,8 @@ public class Usuario {
     
     public void cadastrarUsuario(){
         String sql;
-        sql= "insert into userarios(nome,email, login , senha) values" + 
-             "(" + getNome() + ",'" + getEmail() + "' , '" + getLogin() + "', '" + getSenha()+ "')";
+        sql= "insert into usuarios(nome,email, login , senha) values" + 
+             "('" + getNome() + "','" + getEmail() + "' , '" + getLogin() + "', '" + getSenha()+ "')";
         user.executeSQL(sql);
         JOptionPane.showMessageDialog(null, "Cadastrado! ");
     }
@@ -67,7 +67,7 @@ public class Usuario {
         ResultSet  tabela;
         tabela = null;
         
-        String sql= "Select * from userarios";
+        String sql= "Select * from usuarios";
         tabela = user.RetornarResultset(sql);
         return tabela;
     }
