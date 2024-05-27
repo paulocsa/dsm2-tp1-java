@@ -81,8 +81,8 @@ public class FMenu extends javax.swing.JFrame {
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         this.setVisible(false);
-        FProduto fu = new FProduto();
-        fu.setVisible(true);
+        FProduto cad = new FProduto();
+        cad.setVisible(true);
     }//GEN-LAST:event_jMenu2ActionPerformed
 
     private void menuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVendasActionPerformed

@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Controle;
 
 import java.sql.Connection;
@@ -7,11 +12,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author fatec-dsm2
+ */
 public class Conexao {
-       
+        
     final private String driver = "com.mysql.jdbc.Driver";
    
-    final private String url= "jdbc:mysql://127.0.0.1/Clinica";
+    final private String url= "jdbc:mysql://127.0.0.1/clinica";
     
     final private String usuario="root";
     final private String senha="";

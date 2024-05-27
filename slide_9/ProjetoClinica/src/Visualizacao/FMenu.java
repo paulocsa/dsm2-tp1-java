@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Visualizacao;
+package visualizacao;
 
 /**
  *
- * @author Pedro Gabriel
+ * @author fatec-dsm2
  */
 public class FMenu extends javax.swing.JFrame {
 
@@ -27,8 +27,8 @@ public class FMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        lbllogar = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -36,33 +36,17 @@ public class FMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(208, 240, 255));
+        lbllogar.setText("jLabel3");
 
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vizualizacao/icones/clinica.jpg"))); // NOI18N
-        jToggleButton1.setText(" ");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("Bem Vindo!");
+
+        jMenu1.setText("Arquivo");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                jMenu1ActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vizualizacao/icones/alterar_1.png"))); // NOI18N
-        jMenu1.setText("Arquivo");
-
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vizualizacao/icones/cadastrar.png"))); // NOI18N
         jMenuItem1.setText("Cadastrar Paciente");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,7 +57,6 @@ public class FMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vizualizacao/icones/consultar.png"))); // NOI18N
         jMenu2.setText("Sair");
         jMenuBar1.add(jMenu2);
 
@@ -83,23 +66,38 @@ public class FMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbllogar)
+                .addContainerGap(147, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(lbllogar))
+                .addGap(0, 261, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        FCadastro fu = new FCadastro();
+        
+        fu.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        this.setVisible(false);
+        FCadastro fu = new FCadastro();
+        
+        fu.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,11 +135,11 @@ public class FMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JToggleButton jToggleButton1;
+    public javax.swing.JLabel lbllogar;
     // End of variables declaration//GEN-END:variables
 }
