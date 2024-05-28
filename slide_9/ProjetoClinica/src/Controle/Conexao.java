@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controle;
 
 import java.sql.Connection;
@@ -12,11 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author fatec-dsm2
- */
-public class Conexao {
+public class conexao {
         
     final private String driver = "com.mysql.jdbc.Driver";
    
@@ -24,9 +15,9 @@ public class Conexao {
     
     final private String usuario="root";
     final private String senha="";
-    private Connection conexao;// objeto que faz conexao com o banco
-    public Statement statement;// objeto que abre caminho até o banco
-    public ResultSet resultset;// objeto que armazena os comandos sql   
+    private Connection conexao;
+    public Statement statement;
+    public ResultSet resultset; 
     
     public boolean conecta() {  
         boolean result = true;  
@@ -34,7 +25,6 @@ public class Conexao {
         try {  
             Class.forName(driver);  
             conexao = DriverManager.getConnection(url,usuario,senha);
-            //JOptionPane.showMessageDialog(null,"Conectou com o Banco de Dados");
             
         } catch(ClassNotFoundException Driver){
                JOptionPane.showMessageDialog(null,"Driver nao localizado: "+Driver);
@@ -51,7 +41,6 @@ public class Conexao {
         try
         {
             conexao.close();
-            //JOptionPane.showMessageDialog(null,"Banco fechado");
         }
         catch(SQLException fecha)
         {
@@ -61,14 +50,12 @@ public class Conexao {
     }
      
      public void executeSQL(String sql){
-//chamada do metodo conecta para abrir a conexão com o db
         conecta();
         try{
     
         statement = conexao.createStatement();
 
         statement.execute(sql);
-        //desconecta();
         }catch(SQLException sqle){
            JOptionPane.showMessageDialog(null, "Driver não encontrado1" + sqle.getMessage());
         }
