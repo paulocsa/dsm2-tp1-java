@@ -34,6 +34,7 @@ public class FCadFilme extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
@@ -46,7 +47,7 @@ public class FCadFilme extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 204));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -59,11 +60,30 @@ public class FCadFilme extends javax.swing.JFrame {
             .addGap(0, 193, Short.MAX_VALUE)
         );
 
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualizacao/icons/menu.png"))); // NOI18N
-        jMenu5.setText("File");
+        jMenuBar1.setBackground(new java.awt.Color(204, 255, 255));
+
+        jMenu5.setBackground(new java.awt.Color(204, 255, 255));
+        jMenu5.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualizacao/icons/arquivo.png"))); // NOI18N
+        jMenu5.setText("Menu");
+        jMenu5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu5ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem1.setBackground(new java.awt.Color(204, 255, 255));
+        jMenuItem1.setForeground(new java.awt.Color(0, 0, 0));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualizacao/icons/menu.png"))); // NOI18N
+        jMenuItem1.setText("Menu");
+        jMenu5.add(jMenuItem1);
+
         jMenuBar1.add(jMenu5);
 
-        jMenu6.setText("Edit");
+        jMenu6.setBackground(new java.awt.Color(204, 255, 255));
+        jMenu6.setForeground(new java.awt.Color(0, 0, 0));
+        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualizacao/icons/sair.png"))); // NOI18N
+        jMenu6.setText("Sair");
         jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
@@ -81,6 +101,10 @@ public class FCadFilme extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
+         
+    }//GEN-LAST:event_jMenu5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,6 +149,7 @@ public class FCadFilme extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
