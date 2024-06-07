@@ -5,12 +5,16 @@
  */
 package Modelagem;
 
+import Controle.Conexao;
+import java.sql.ResultSet;
+
 /**
  *
  * @author fatec-dsm2
  */
 public class Filme {
     
+     private Conexao con = new Conexao();
      private int codigo;
     private String titulo;
     private String genero;
@@ -67,6 +71,15 @@ public class Filme {
 
     public void setDataCompra(String dataCompra) {
         this.dataCompra = dataCompra;
+    }
+
+    public ResultSet consultarFilmes() {
+        ResultSet tabela;
+        tabela = null;
+        
+        String sql= "Select * from filmes";
+        tabela = con.RetornarResultset(sql);
+     return tabela; 
     }
     
     
