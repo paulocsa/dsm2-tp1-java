@@ -1,28 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Modelagem;
 
 import Controle.Conexao;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author fatec-dsm2
- */
 public class Filme {
-    
-     private Conexao con = new Conexao();
-     private int codigo;
+
+    private Conexao con = new Conexao();
+    private int codigo;
     private String titulo;
     private String genero;
     private String produtora;
     private String dataCompra;
 
     public Filme() {
-        this(0,"","","","");
+        this(0, "", "", "", "");
     }
 
     public Filme(int codigo, String titulo, String genero, String produtora, String dataCompra) {
@@ -73,17 +65,40 @@ public class Filme {
         this.dataCompra = dataCompra;
     }
 
-    public ResultSet consultarFilmes() {
-        ResultSet tabela;
-        tabela = null;
-        
-        String sql= "Select * from filmes";
-        tabela = con.RetornarResultset(sql);
-     return tabela; 
+    public void cadastrarFilme() {
+        String sql = "INSERT INTO filmes (Codigo, Titulo, Genero, Produtora, DataCompra) VALUES " +
+                     "('" + getCodigo() + "','" + getTitulo() + "','" + getGenero() + "','" + getProdutora() + "','" + getDataCompra() + "')";
+        con.executeSQL(sql);
+        JOptionPane.showMessageDialog(null, "Registrado com sucesso");
     }
-    
-    
-    
-    
-    
+
+    public ResultSet consultarFilmes() {
+        ResultSet tabela = null;
+        String sql = "SELECT * FROM filmes";
+        tabela = con.RetornarResultset(sql);
+        return tabela;
+    }
+
+    public ResultSet consultarCampoEspecifico(String campo) {
+        ResultSet tabela = null;
+        try {
+            String sql = "SELECT * FROM filmes WHERE titulo LIKE '" + campo + "%'";
+            tabela = con.RetornarResultset(sql);
+        } catch (Exception sqle) {
+            JOptionPane.showMessageDialog(null, "Atenção... " + sqle.getMessage());
+        }
+        return tabela;
+    }
+
+    public void excluirFilme() {
+        String sql = "DELETE FROM filmes WHERE codigo = " + getCodigo();
+        con.executeSQL(sql);
+        JOptionPane.showMessageDialog(null, "Registro excluído.");
+    }
+
+    public void alterarFilme() {
+        String sql = "UPDATE filmes SET titulo = '" + getTitulo() + "', genero = '" + getGenero() + "', produtora = '" + getProdutora() + "', dataCompra = '" + getDataCompra() + "' WHERE codigo = " + getCodigo();
+        con.executeSQL(sql);
+        JOptionPane.showMessageDialog(null, "Registro alterado.");
+    }
 }

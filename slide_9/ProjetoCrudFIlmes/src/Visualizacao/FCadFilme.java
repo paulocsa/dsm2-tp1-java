@@ -8,6 +8,8 @@ package Visualizacao;
 import Modelagem.Filme;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,9 +24,28 @@ public class FCadFilme extends javax.swing.JFrame {
      */
     public FCadFilme() {
         initComponents();
+        atualizarTabela();
     }
 
-    
+    private void atualizarTabela() {
+        ResultSet tabela = FM.consultarFilmes();
+        DefaultTableModel modelo = (DefaultTableModel) tblCadFilmes.getModel();
+        modelo.setNumRows(0); // Limpa a tabela antes de preencher com novos dados
+        try {
+            while (tabela.next()) {
+                modelo.addRow(new Object[]{
+                tabela.getInt("Codigo"),
+                tabela.getString("Titulo"),
+                tabela.getString("Genero"),
+                tabela.getString("Produtora"),
+                tabela.getString("DataCompra")
+            });
+        }
+    } catch (SQLException erro) {
+        JOptionPane.showMessageDialog(null, "Erro ao preencher tabela: " + erro.getMessage());
+    }
+    }
+
      Filme FM = new Filme();
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,11 +74,11 @@ public class FCadFilme extends javax.swing.JFrame {
         btnCadastar = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        btnAlterar = new javax.swing.JToggleButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCadFilmes = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         txtConsultar = new javax.swing.JTextField();
+        btnAlterar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -75,19 +96,14 @@ public class FCadFilme extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Código");
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Titulo");
 
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Genêro");
 
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Produtora");
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Data Compra");
 
         txtCodigo.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +118,8 @@ public class FCadFilme extends javax.swing.JFrame {
             }
         });
 
-        btnCadastar.setBackground(new java.awt.Color(51, 51, 51));
+        btnCadastar.setBackground(new java.awt.Color(204, 255, 255));
+        btnCadastar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualizacao/icons/cadastrar.png"))); // NOI18N
         btnCadastar.setText("Cadastrar");
         btnCadastar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,13 +127,23 @@ public class FCadFilme extends javax.swing.JFrame {
             }
         });
 
-        btnConsultar.setBackground(new java.awt.Color(51, 51, 51));
+        btnConsultar.setBackground(new java.awt.Color(204, 255, 255));
+        btnConsultar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualizacao/icons/consultar.png"))); // NOI18N
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
-        btnExcluir.setBackground(new java.awt.Color(51, 51, 51));
+        btnExcluir.setBackground(new java.awt.Color(204, 255, 255));
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualizacao/icons/excluir.png"))); // NOI18N
         btnExcluir.setText("Excluir");
-
-        btnAlterar.setText("Alterar");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         tblCadFilmes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,8 +158,16 @@ public class FCadFilme extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblCadFilmes);
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Consultar");
+
+        btnAlterar.setBackground(new java.awt.Color(204, 255, 255));
+        btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualizacao/icons/alterar.png"))); // NOI18N
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,17 +176,7 @@ public class FCadFilme extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(btnCadastar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAlterar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnExcluir))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -174,15 +199,23 @@ public class FCadFilme extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnConsultar)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(158, 158, 158)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(txtConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnCadastar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAlterar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnExcluir)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnConsultar)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,21 +242,20 @@ public class FCadFilme extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtDataCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastar)
                     .addComponent(btnConsultar)
                     .addComponent(btnExcluir)
                     .addComponent(btnAlterar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(204, 255, 255));
 
         jMenu5.setBackground(new java.awt.Color(204, 255, 255));
-        jMenu5.setForeground(new java.awt.Color(0, 0, 0));
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualizacao/icons/arquivo.png"))); // NOI18N
         jMenu5.setText("Menu");
         jMenu5.addActionListener(new java.awt.event.ActionListener() {
@@ -233,7 +265,6 @@ public class FCadFilme extends javax.swing.JFrame {
         });
 
         jMenuItem1.setBackground(new java.awt.Color(204, 255, 255));
-        jMenuItem1.setForeground(new java.awt.Color(0, 0, 0));
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualizacao/icons/menu.png"))); // NOI18N
         jMenuItem1.setText("Menu");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -246,7 +277,6 @@ public class FCadFilme extends javax.swing.JFrame {
         jMenuBar1.add(jMenu5);
 
         jMenu6.setBackground(new java.awt.Color(204, 255, 255));
-        jMenu6.setForeground(new java.awt.Color(0, 0, 0));
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Visualizacao/icons/sair.png"))); // NOI18N
         jMenu6.setText("Sair");
         jMenu6.addActionListener(new java.awt.event.ActionListener() {
@@ -297,11 +327,96 @@ public class FCadFilme extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void btnCadastarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastarActionPerformed
-        FM.setCodigo(txtCodigo.getText());
+         FM.setCodigo(Integer.parseInt(txtCodigo.getText()));
+        FM.setTitulo(txtTitulo.getText());
         FM.setGenero(txtGenero.getText());
         FM.setProdutora(txtProdutora.getText());
         FM.setDataCompra(txtDataCompra.getText());
+        FM.cadastrarFilme();
+        ResultSet tabela = null;
+        
+         try {
+            tabela = FM.consultarFilmes();
+            DefaultTableModel modelo = (DefaultTableModel) tblCadFilmes.getModel();
+            modelo.setNumRows(0);
+
+            while (tabela.next()) {
+                modelo.addRow(new String[]{
+                    tabela.getString(1),
+                    tabela.getString(2),
+                    tabela.getString(3),
+                    tabela.getString(4),
+                    tabela.getString(5)
+                });
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro ao preencher tabela: " + erro.getMessage());
+        }atualizarTabela();
     }//GEN-LAST:event_btnCadastarActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+         FM.setCodigo(Integer.parseInt(txtCodigo.getText()));
+        FM.setTitulo(txtTitulo.getText());
+        FM.setGenero(txtGenero.getText());
+        FM.setProdutora(txtProdutora.getText());
+        FM.setDataCompra(txtDataCompra.getText());
+        FM.alterarFilme();
+        atualizarTabela();
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        FM.setCodigo(Integer.parseInt(txtCodigo.getText()));
+        FM.setTitulo(txtTitulo.getText());
+        FM.setGenero(txtGenero.getText());
+        FM.setProdutora(txtProdutora.getText());
+        FM.setDataCompra(txtDataCompra.getText());
+        FM.excluirFilme();
+        atualizarTabela();
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+        
+       String campo = txtConsultar.getText();
+    ResultSet resultado = FM.consultarCampoEspecifico(campo);
+
+        try {
+            FM.setCodigo(resultado.getInt("codigo"));
+        } catch (SQLException ex) {
+            Logger.getLogger(FCadFilme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            FM.setTitulo(resultado.getString("titulo"));
+        } catch (SQLException ex) {
+            Logger.getLogger(FCadFilme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            FM.setGenero(resultado.getString("genero"));
+        } catch (SQLException ex) {
+            Logger.getLogger(FCadFilme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            FM.setProdutora(resultado.getString("produtora"));
+        } catch (SQLException ex) {
+            Logger.getLogger(FCadFilme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            FM.setDataCompra(resultado.getString("dataCompra"));
+        } catch (SQLException ex) {
+            Logger.getLogger(FCadFilme.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+            
+            txtCodigo.setText(String.valueOf(FM.getCodigo()));
+            txtTitulo.setText(FM.getTitulo());
+            txtGenero.setText(FM.getGenero());
+            txtProdutora.setText(FM.getProdutora());
+            txtDataCompra.setText(FM.getDataCompra());
+
+   
+    }//GEN-LAST:event_btnConsultarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -338,22 +453,10 @@ public class FCadFilme extends javax.swing.JFrame {
         });
     }
     
-     private void atualizarTabela() {
-        ResultSet tabela = FM.consultarFilmes();
-        DefaultTableModel modelo = (DefaultTableModel) tblCadFilmes.getModel();
-        modelo.setNumRows(0);
-        try {
-            while (tabela.next()) {
-                modelo.addRow(new Object[]{tabela.getInt("codigo"), tabela.getString("titulo"), tabela.getString("genero"), tabela.getString("produtora"), tabela.getString("dataCompra")});
-            }
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro ao preencher tabela: " + erro.getMessage());
-        }
-    }
-
+     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton btnAlterar;
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadastar;
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnExcluir;
